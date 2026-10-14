@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Лаб 5 | Responsive Web Page</title>
+
+    <style>
+
+        /* ==============================
+           1. ЕРӨНХИЙ ТОХИРГОО
+        ============================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f8ff;
+            color: #263238;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* ==============================
+           2. HEADER
+        ============================== */
+
+        header {
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #4f8df7,
+                #60a5fa
+            );
+
+            color: white;
+            padding: 30px 8%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            min-height: 150px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-icon {
+            width: 75px;
+            height: 75px;
+
+            background: white;
+            color: #2563eb;
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 32px;
+            font-weight: bold;
+
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-text h1 {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        .profile-text p {
+            opacity: 0.9;
+        }
+
+        .student-info {
+            text-align: right;
+        }
+
+        .student-info span {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+
+        /* ==============================
+           3. NAVIGATION
+        ============================== */
+
+        nav {
+            background: #ffffff;
+
+            padding: 15px 8%;
+
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        nav a {
+            display: block;
+
+            color: #334155;
+
+            padding: 10px 20px;
+
+            border-radius: 25px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile menu button */
+
+        .menu-toggle {
+            display: none;
+
+            border: none;
+
+            background: #2563eb;
+            color: white;
+
+            font-size: 24px;
+
+            padding: 8px 14px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+        }
+
+
+        /* ==============================
+           4. MAIN LAYOUT
+        ============================== */
+
+        .layout {
+            max-width: 1250px;
+
+            margin: 40px auto;
+
+            padding: 0 25px;
+
+            display: flex;
+
+            gap: 30px;
+
+            align-items: flex-start;
+        }
+
+
+        /* ==============================
+           5. MAIN CONTENT
+        ============================== */
+
+        main {
+            flex: 1;
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 30px rgba(37, 99, 235, 0.08);
+
+            min-width: 0;
+        }
+
+        .welcome {
+            margin-bottom: 35px;
+        }
+
+        .welcome h2 {
+            font-size: 30px;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #64748b;
+            max-width: 800px;
+        }
+
+
+        /* ==============================
+           6. SECTION TITLE
+        ============================== */
+
+        .section-title {
+            margin: 30px 0 20px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .section-title h2 {
+            color: #1e3a8a;
+            font-size: 23px;
+        }
+
+        .section-title span {
+            color: #2563eb;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+
+        /* ==============================
+           7. CSS GRID
+        ============================== */
+
+        .cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+
+        /* ==============================
+           8. CARD
+        ============================== */
+
+        .card {
+            background: #f8fbff;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+            min-height: 230px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            transition: all 0.3s ease;
+
+            min-width: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+
+            border-color: #60a5fa;
+
+            box-shadow:
+                0 15px 30px rgba(37, 99, 235, 0.15);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+
+            border-radius: 12px;
+
+            background: #dbeafe;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 24px;
+
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #1e40af;
+
+            margin-bottom: 10px;
+
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-bottom: 15px;
+        }
+
+        .card-button {
+            display: inline-block;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding: 8px 16px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .card-button:hover {
+            background: #1e3a8a;
+        }
+
+
+        /* ==============================
+           9. SKILLS GRID
+        ============================== */
+
+        .skills {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+        .skill {
+            padding: 18px;
+
+            background: #eff6ff;
+
+            border-radius: 12px;
+
+            text-align: center;
+
+            border: 1px solid #dbeafe;
+
+            transition: 0.3s;
+
+            min-width: 0;
+        }
+
+        .skill:hover {
+            background: #dbeafe;
+
+            transform: scale(1.03);
+        }
+
+        .skill strong {
+            display: block;
+
+            color: #1e40af;
+
+            margin-bottom: 5px;
+        }
+
+        .skill span {
+            font-size: 13px;
+
+            color: #64748b;
+        }
+
+
+        /* ==============================
+           10. SIDEBAR
+        ============================== */
+
+        aside {
+            width: 300px;
+
+            background: white;
+
+            padding: 28px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 10px 30px rgba(37, 99, 235, 0.08);
+
+            position: sticky;
+
+            top: 90px;
+        }
+
+        .sidebar-title {
+            color: #1e3a8a;
+
+            font-size: 22px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* ==============================
+           11. SIDEBAR PROFILE
+        ============================== */
+
+        .mini-profile {
+            background: linear-gradient(
+                135deg,
+                #eff6ff,
+                #dbeafe
+            );
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            margin-bottom: 25px;
+        }
+
+        .mini-icon {
+            width: 65px;
+            height: 65px;
+
+            background: #2563eb;
+
+            color: white;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin: 0 auto 12px;
+
+            font-size: 25px;
+
+            font-weight: bold;
+        }
+
+        .mini-profile h3 {
+            color: #1e3a8a;
+        }
+
+        .mini-profile p {
+            color: #64748b;
+
+            font-size: 13px;
+        }
+
+
+        /* ==============================
+           12. SIDEBAR MENU
+        ============================== */
+
+        .side-menu {
+            list-style: none;
+        }
+
+        .side-menu li {
+            margin-bottom: 10px;
+        }
+
+        .side-menu a {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px;
+
+            border-radius: 10px;
+
+            color: #475569;
+
+            transition: 0.3s;
+        }
+
+        .side-menu a:hover {
+            background: #eff6ff;
+
+            color: #2563eb;
+
+            padding-left: 18px;
+        }
+
+
+        /* ==============================
+           13. CONTACT BOX
+        ============================== */
+
+        .contact-box {
+            margin-top: 25px;
+
+            padding: 20px;
+
+            background: #1e3a8a;
+
+            color: white;
+
+            border-radius: 15px;
+        }
+
+        .contact-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .contact-box p {
+            font-size: 13px;
+
+            margin-bottom: 5px;
+
+            overflow-wrap: anywhere;
+        }
+
+
+        /* ==============================
+           14. FOOTER
+        ============================== */
+
+        footer {
+            background: #172554;
+
+            color: white;
+
+            padding: 35px 8%;
+
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 30px;
+        }
+
+        .footer-title {
+            font-size: 20px;
+
+            font-weight: bold;
+
+            margin-bottom: 5px;
+        }
+
+        .footer-text {
+            color: #bfdbfe;
+
+            font-size: 14px;
+        }
+
+        .footer-right {
+            text-align: right;
+
+            color: #bfdbfe;
+
+            font-size: 14px;
+        }
+
+
+        /* ==============================
+           15. TABLET
+           601px - 1000px
+        ============================== */
+
+        @media (max-width: 1000px) {
+
+            header {
+                padding: 25px 5%;
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .layout {
+                flex-direction: column;
+
+                padding: 0 20px;
+            }
+
+            main {
+                width: 100%;
+            }
+
+            aside {
+                width: 100%;
+
+                position: static;
+            }
+
+            .skills {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                padding: 12px 5%;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+            }
+        }
+
+
+        /* ==============================
+           16. MOBILE
+           600px and below
+        ============================== */
+
+        @media (max-width: 600px) {
+
+            body {
+                width: 100%;
+
+                overflow-x: hidden;
+            }
+
+            header {
+                flex-direction: column;
+
+                text-align: center;
+
+                gap: 18px;
+
+                padding: 22px 15px;
+            }
+
+            .profile {
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+            .profile-icon {
+                width: 65px;
+
+                height: 65px;
+
+                font-size: 28px;
+            }
+
+            .profile-text h1 {
+                font-size: 25px;
+            }
+
+            .student-info {
+                text-align: center;
+            }
+
+
+            /* MOBILE NAVIGATION */
+
+            nav {
+                padding: 10px 15px;
+            }
+
+            .menu-toggle {
+                display: block;
+
+                margin: 0 auto;
+            }
+
+            nav ul {
+                flex-direction: column;
+
+                gap: 5px;
+
+                margin-top: 8px;
+            }
+
+            nav a {
+                width: 100%;
+
+                max-width: 280px;
+
+                text-align: center;
+
+                padding: 9px 12px;
+            }
+
+
+            /* MAIN */
+
+            .layout {
+                margin-top: 20px;
+
+                padding: 0 12px;
+
+                gap: 20px;
+            }
+
+            main {
+                padding: 20px 16px;
+
+                border-radius: 15px;
+            }
+
+            .welcome h2 {
+                font-size: 24px;
+            }
+
+
+            /* SECTION */
+
+            .section-title {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 5px;
+            }
+
+            .section-title h2 {
+                font-size: 20px;
+            }
+
+
+            /* CARDS */
+
+            .cards {
+                grid-template-columns: 1fr;
+
+                gap: 15px;
+            }
+
+            .card {
+                min-height: auto;
+
+                padding: 20px;
+            }
+
+
+            /* SKILLS */
+
+            .skills {
+                grid-template-columns: 1fr;
+
+                gap: 12px;
+            }
+
+
+            /* SIDEBAR */
+
+            aside {
+                padding: 20px;
+            }
+
+
+            /* FOOTER */
+
+            .footer-content {
+                flex-direction: column;
+
+                text-align: center;
+
+                gap: 15px;
+            }
+
+            .footer-right {
+                text-align: center;
+            }
+        }
+
+
+        /* ==============================
+           17. VERY SMALL MOBILE
+        ============================== */
+
+        @media (max-width: 380px) {
+
+            .profile-text h1 {
+                font-size: 22px;
+            }
+
+            main {
+                padding: 16px 12px;
+            }
+
+            .card {
+                padding: 16px;
+            }
+
+            .card h3 {
+                font-size: 18px;
+            }
+
+            .card p {
+                font-size: 13px;
+            }
+
+            nav a {
+                max-width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ==============================
+         HEADER
+    ============================== -->
+
+    <header>
+
+        <div class="profile">
+
+            <div class="profile-icon">
+                Ж
+            </div>
+
+            <div class="profile-text">
+
+                <h1>Ж.Жавзанпагма</h1>
+
+                <p>
+                    Компьютерийн ухаан • 2-р курс
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="student-info">
+
+            <span>🎓 Оюутан</span>
+
+            <span>💻 Web Development</span>
+
+            <span>📱 Responsive Web</span>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==============================
+         NAVIGATION
+    ============================== -->
+
+    <nav>
+
+        <button class="menu-toggle" aria-label="Цэс нээх">
+            ☰
+        </button>
+
+        <ul>
+
+            <li>
+                <a href="#">Нүүр</a>
+            </li>
+
+            <li>
+                <a href="#about">Миний тухай</a>
+            </li>
+
+            <li>
+                <a href="#subjects">Хичээл</a>
+            </li>
+
+            <li>
+                <a href="#responsive-info">Responsive</a>
+            </li>
+
+            <li>
+                <a href="#skills">Ур чадвар</a>
+            </li>
+
+            <li>
+                <a href="#contact">Холбоо барих</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- ==============================
+         MAIN LAYOUT
+    ============================== -->
+
+    <div class="layout">
+
+
+        <!-- MAIN -->
+
+        <main>
+
+
+            <!-- WELCOME -->
+
+            <section class="welcome" id="about">
+
+                <h2>
+                    Тавтай морилно уу! 👋
+                </h2>
+
+                <p>
+                    Сайн байна уу? Би Компьютерийн ухааны
+                    2-р курсын оюутан. Энэхүү веб хуудсыг
+                    CSS Flexbox, CSS Grid болон Media Query
+                    ашиглан Responsive веб хуудас болгон
+                    лабораторийн ажлын хүрээнд боловсрууллаа.
+                </p>
+
+            </section>
+
+
+
+            <!-- SUBJECTS -->
+
+            <section id="subjects">
+
+                <div class="section-title">
+
+                    <h2>
+                        📚 Миний хичээлүүд
+                    </h2>
+
+                    <span>
+                        CSS GRID
+                    </span>
+
+                </div>
+
+
+                <div class="cards">
+
+
+                    <!-- CARD 1 -->
+
+                    <article class="card">
+
+                        <div>
+
+                            <div class="card-icon">
+                                💻
+                            </div>
+
+                            <h3>
+                                Програмчлал
+                            </h3>
+
+                            <p>
+                                Python болон Java хэл дээр
+                                програмчлалын үндсэн ойлголтууд,
+                                алгоритм болон код бичих чадвараа
+                                хөгжүүлж байна.
+                            </p>
+
+                        </div>
+
+                        <a href="#" class="card-button">
+                            Дэлгэрэнгүй →
+                        </a>
+
+                    </article>
+
+
+
+                    <!-- CARD 2 -->
+
+                    <article class="card">
+
+                        <div>
+
+                            <div class="card-icon">
+                                🌐
+                            </div>
+
+                            <h3>
+                                Вэб зохиомж
+                            </h3>
+
+                            <p>
+                                HTML, CSS ашиглан веб хуудасны
+                                бүтэц, дизайн, layout болон
+                                responsive загвар боловсруулна.
+                            </p>
+
+                        </div>
+
+                        <a href="#" class="card-button">
+                            Дэлгэрэнгүй →
+                        </a>
+
+                    </article>
+
+
+
+                    <!-- CARD 3 -->
+
+                    <article class="card">
+
+                        <div>
+
+                            <div class="card-icon">
+                                🧠
+                            </div>
+
+                            <h3>
+                                Алгоритм
+                            </h3>
+
+                            <p>
+                                Бодлогыг алгоритмын дагуу задлан
+                                шинжлэх, үр ашигтай шийдэл
+                                боловсруулах чадварыг судална.
+                            </p>
+
+                        </div>
+
+                        <a href="#" class="card-button">
+                            Дэлгэрэнгүй →
+                        </a>
+
+                    </article>
+
+
+
+                    <!-- CARD 4 -->
+
+                    <article class="card">
+
+                        <div>
+
+                            <div class="card-icon">
+                                🎨
+                            </div>
+
+                            <h3>
+                                CSS Design
+                            </h3>
+
+                            <p>
+                                Өнгө, зай, хэмжээ, байрлал болон
+                                орчин үеийн веб дизайны үндсэн
+                                зарчмуудыг ашиглана.
+                            </p>
+
+                        </div>
+
+                        <a href="#" class="card-button">
+                            Дэлгэрэнгүй →
+                        </a>
+
+                    </article>
+
+
+
+                    <!-- CARD 5 -->
+
+                    <article class="card">
+
+                        <div>
+
+                            <div class="card-icon">
+                                🗄️
+                            </div>
+
+                            <h3>
+                                Өгөгдлийн сан
+                            </h3>
+
+                            <p>
+                                Өгөгдлийг хадгалах, боловсруулах,
+                                хүснэгт үүсгэх болон SQL команд
+                                ашиглах үндсийг судална.
+                            </p>
+
+                        </div>
+
+                        <a href="#" class="card-button">
+                            Дэлгэрэнгүй →
+                        </a>
+
+                    </article>
+
+
+
+                    <!-- CARD 6 -->
+
+                    <article class="card">
+
+                        <div>
+
+                            <div class="card-icon">
+                                🚀
+                            </div>
+
+                            <h3>
+                                Web Development
+                            </h3>
+
+                            <p>
+                                Орчин үеийн веб технологиудыг
+                                ашиглан хэрэглэгчдэд зориулсан
+                                веб сайт бүтээх чадвараа хөгжүүлнэ.
+                            </p>
+
+                        </div>
+
+                        <a href="#" class="card-button">
+                            Дэлгэрэнгүй →
+                        </a>
+
+                    </article>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- RESPONSIVE INFO -->
+
+            <section id="responsive-info">
+
+                <div class="section-title">
+
+                    <h2>
+                        📱 Responsive дизайн
+                    </h2>
+
+                    <span>
+                        MOBILE • TABLET • DESKTOP
+                    </span>
+
+                </div>
+
+
+                <div class="skills">
+
+                    <div class="skill">
+
+                        <strong>
+                            📱 Mobile
+                        </strong>
+
+                        <span>
+                            600px хүртэл
+                        </span>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <strong>
+                            📲 Tablet
+                        </strong>
+
+                        <span>
+                            601px – 1000px
+                        </span>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <strong>
+                            💻 Desktop
+                        </strong>
+
+                        <span>
+                            1001px дээш
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- SKILLS -->
+
+            <section id="skills">
+
+                <div class="section-title">
+
+                    <h2>
+                        ⭐ Миний ур чадвар
+                    </h2>
+
+                    <span>
+                        SKILLS
+                    </span>
+
+                </div>
+
+
+                <div class="skills">
+
+                    <div class="skill">
+
+                        <strong>
+                            HTML5
+                        </strong>
+
+                        <span>
+                            Дунд шат
+                        </span>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <strong>
+                            CSS3
+                        </strong>
+
+                        <span>
+                            Дунд шат
+                        </span>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <strong>
+                            Flexbox
+                        </strong>
+
+                        <span>
+                            Суралцаж байгаа
+                        </span>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <strong>
+                            CSS Grid
+                        </strong>
+
+                        <span>
+                            Суралцаж байгаа
+                        </span>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <strong>
+                            Python
+                        </strong>
+
+                        <span>
+                            Дунд шат
+                        </span>
+
+                    </div>
+
+
+                    <div class="skill">
+
+                        <strong>
+                            Java
+                        </strong>
+
+                        <span>
+                            Суурь мэдлэг
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+
+
+        <!-- SIDEBAR -->
+
+        <aside>
+
+            <h2 class="sidebar-title">
+                👩‍💻 Оюутны мэдээлэл
+            </h2>
+
+
+            <!-- MINI PROFILE -->
+
+            <div class="mini-profile">
+
+                <div class="mini-icon">
+                    Ж
+                </div>
+
+                <h3>
+                    Ж.Жавзанпагма
+                </h3>
+
+                <p>
+                    Компьютерийн ухаан
+                </p>
+
+                <p>
+                    2-р курсийн оюутан
+                </p>
+
+            </div>
+
+
+            <!-- SIDE MENU -->
+
+            <ul class="side-menu">
+
+                <li>
+                    <a href="#">
+                        🏠 Нүүр хуудас
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#about">
+                        👤 Миний тухай
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#subjects">
+                        📚 Хичээлүүд
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#responsive-info">
+                        📱 Responsive
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#skills">
+                        ⭐ Ур чадвар
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contact">
+                        📞 Холбоо барих
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <!-- CONTACT -->
+
+            <div class="contact-box" id="contact">
+
+                <h3>
+                    📩 Холбоо барих
+                </h3>
+
+                <p>
+                    📧 jawzanpagma762@gmail.com
+                </p>
+
+                <p>
+                    📱 88000000
+                </p>
+
+            </div>
+
+        </aside>
+
+
+    </div>
+
+
+
+    <!-- ==============================
+         FOOTER
+    ============================== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+
+                <div class="footer-title">
+                    Ж.Жавзанпагма
+                </div>
+
+                <div class="footer-text">
+                    Компьютерийн ухаан • 2-р курс
+                </div>
+
+            </div>
+
+
+            <div class="footer-right">
+
+                <p>
+                    Responsive Web Design
+                </p>
+
+                <p>
+                    Laboratory 5 • 2026
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>
